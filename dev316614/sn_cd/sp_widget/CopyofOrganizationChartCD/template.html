@@ -1,4 +1,8 @@
 <div class="org-chart">
+  <h2 class="org-chart-title">FFIs organisasjonsstruktur</h2>
+  <p class="org-chart-summary" ng-if="c.chart.roots.length">
+    {{c.chart.totalDepartments}} {{c.chart.totalDepartments === 1 ? c.chart.i18n.organizationUnit : c.chart.i18n.organizationUnits}}
+  </p>
   <div class="org-chart-container">
   </div>
 </div>

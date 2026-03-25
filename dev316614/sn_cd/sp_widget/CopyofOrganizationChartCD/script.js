@@ -9,6 +9,8 @@ data.orgChart.i18n = {
 	gruppeProgram: gs.getMessage("Gruppe/Program"),
 	noDepartments: gs.getMessage("No departments found"),
 	omrade: gs.getMessage("Område"),
+	organizationUnit: gs.getMessage("organisasjonsenhet"),
+	organizationUnits: gs.getMessage("organisasjonsenheter"),
 	parent: gs.getMessage("Parent"),
 	topLevelDepartment: gs.getMessage("Top-level department")
 };
@@ -91,6 +93,7 @@ function getFieldValueAndMetadata(gr, fieldName) {
 function getDepartmentData(gr) {
 	return {
 		description: getFieldValueAndMetadata(gr, "description"),
+		id: getFieldValueAndMetadata(gr, "id"),
 		sys_id: getFieldValueAndMetadata(gr, "sys_id"),
 		name: getFieldValueAndMetadata(gr, "name"),
 		parent: getFieldValueAndMetadata(gr, "parent"),

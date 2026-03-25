@@ -27,9 +27,26 @@ a {
 .org-chart {
   position: relative;
   padding-bottom: 40px;
+
+  .org-chart-title {
+    margin: 0;
+    padding: 20px 16px 8px;
+    color: #343D47;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
   
   @media screen and (max-width: 1024px) {
     overflow: hidden;
+  }
+
+  @media screen and (max-width: 767px) {
+    .org-chart-title {
+      padding: 0 8px;
+      font-size: 2.4rem;
+    }
   }
 
   .orgchart-search {
@@ -101,7 +118,6 @@ a {
 		width: 300px;
     }
     }    
-  }
   
   .sr-only {
     position:absolute;
@@ -208,6 +224,7 @@ a {
 	.orgchart-search {    
     .avatar {
       float: left;
+      position: relative;
       background-size: cover;
       border-radius: 100px;            
       background-color: white;
@@ -222,7 +239,6 @@ a {
       @if ($color-darkest) {
         color: $color-darkest;
       }     
-      display: inline-block;
       margin-right: 5px;
       text-align: center;
       width: 24px;
@@ -671,7 +687,7 @@ a {
 
 .org-chart {
   .org-chart-container {
-    padding: 32px 16px 48px;
+    padding: 20px 16px 48px;
     overflow-x: auto;
     overflow-y: visible;
     -webkit-overflow-scrolling: touch;
@@ -681,7 +697,7 @@ a {
   .org-chart-empty {
     color: #485563;
     font-size: 1.4rem;
-    margin: 0 0 24px;
+    margin: 0 0 32px;
     text-align: center;
   }
 
@@ -728,7 +744,16 @@ a {
     margin-top: 8px;
   }
 
-  .department-card .name span {
+  .department-card .name {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0 8px;
+    text-align: center;
+  }
+
+  .department-card .name .department-name {
     color: $primary !important;
     font-size: 1.8rem;
     font-weight: 600;
@@ -738,6 +763,14 @@ a {
     overflow: visible;
   }
 
+  .department-card .name .department-id {
+    color: #485563;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
   .department-card .department-level span {
     color: #485563;
     font-weight: 600;
@@ -745,7 +778,11 @@ a {
 
   .department-card .department-description {
     margin-top: 12px;
-    text-align: left;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     overflow: hidden;
   }
 
@@ -756,6 +793,9 @@ a {
     white-space: normal;
     text-overflow: clip;
     overflow: hidden;
+    width: 100%;
+    text-align: center;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
   }
@@ -818,7 +858,11 @@ a {
 
   @media screen and (max-width: 767px) {
     .org-chart-container {
-      padding: 24px 8px 40px;
+      padding: 16px 8px 40px;
+    }
+
+    .org-chart-title {
+      padding: 16px 8px 6px;
     }
 
     .department-forest {

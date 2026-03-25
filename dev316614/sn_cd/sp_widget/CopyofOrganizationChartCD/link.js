@@ -6,7 +6,6 @@ function orgChartLink(scope, element, attr, ctrl) {
 
 	function render() {
 		var forest;
-		var summary;
 
 		container.innerHTML = "";
 
@@ -14,10 +13,6 @@ function orgChartLink(scope, element, attr, ctrl) {
 			container.appendChild(makeEmptyState());
 			return;
 		}
-
-		summary = makeDom("p", "org-chart-summary");
-		summary.textContent = chart.totalDepartments + " " + (chart.totalDepartments === 1 ? chart.i18n.department : chart.i18n.departments);
-		container.appendChild(summary);
 
 		forest = makeDom("div", "department-forest");
 		chart.roots.forEach(function(root) {
@@ -66,7 +61,7 @@ function orgChartLink(scope, element, attr, ctrl) {
 		card.setAttribute("href", buildDepartmentSearchUrl(department));
 		card.setAttribute("aria-label", "Open colleague search for " + department.name.display_value);
 		card.appendChild(cardContainer);
-		appendSimpleLine(cardContainer, "name", department.name.display_value);
+		appendNameLine(cardContainer, department.name.display_value, department.id.display_value || department.id.value);
 		appendSimpleLine(cardContainer, "department-level", department.levelText);
 		appendSimpleLine(cardContainer, "department-description", department.description.display_value || department.description.value);
 
@@ -87,6 +82,28 @@ function orgChartLink(scope, element, attr, ctrl) {
 
 		span.textContent = value;
 		p.appendChild(span);
+		container.appendChild(p);
+	}
+
+	function appendNameLine(container, name, departmentId) {
+		var p;
+		var nameSpan;
+		var idSpan;
+
+		if (!name)
+			return;
+
+		p = makeDom("p", "name");
+		nameSpan = makeDom("span", "department-name");
+		nameSpan.textContent = name;
+		p.appendChild(nameSpan);
+
+		if (departmentId) {
+			idSpan = makeDom("span", "department-id");
+			idSpan.textContent = "(" + departmentId + ")";
+			p.appendChild(idSpan);
+		}
+
 		container.appendChild(p);
 	}
 
