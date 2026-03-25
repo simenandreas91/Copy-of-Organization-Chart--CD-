@@ -1,0 +1,425 @@
+{
+    "instance": {
+        "name": "dev316614",
+        "url": "https://dev316614.service-now.com",
+        "g_ck": "842d2c1ec3f33a506b68770d050131acd64ffb3d6769bb11fdd0831eff74140141e61015"
+    },
+    "action": "saveWidget",
+    "tableName": "sp_widget",
+    "name": "Copy of Organization Chart (CD)",
+    "sys_id": "cd4033f9c337b6506b68770d05013149",
+    "widget": {
+        "template": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "Body HTML template",
+            "sys_readonly": false,
+            "type": "html_template",
+            "mandatory": false,
+            "displayValue": "<div class=\"org-chart\">\n  <div class=\"org-chart-container\">\n  </div>\n</div>\n",
+            "readonly": false,
+            "hint": "",
+            "name": "template",
+            "attributes": {},
+            "choice": 0,
+            "value": "<div class=\"org-chart\">\n  <div class=\"org-chart-container\">\n  </div>\n</div>\n",
+            "max_length": 65000,
+            "ed": {
+                "name": "template"
+            }
+        },
+        "css": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "CSS",
+            "sys_readonly": false,
+            "type": "css",
+            "mandatory": false,
+            "displayValue": "@mixin ellipsis ($width) {\r\n  max-width: $width;\r\n  white-space: nowrap;\r\n  text-overflow: ellipsis;\r\n  overflow: hidden;\r\n}\r\n\r\n@mixin animate ($name, $dur, $delay, $dir, $count, $mode) {\r\n  animation-name: $name;\r\n  animation-duration: $dur;\r\n  animation-delay: $delay;\r\n  animation-direction: $dir;\r\n  animation-iteration-count: $count;\r\n\tanimation-fill-mode: $mode;\r\n  animation-timing-function: ease-out;\r\n}\r\n\r\n@mixin trans ($prop, $dur) {\r\n  transition-property: $prop;\r\n  transition-duration: $dur;\r\n  transition-timing-function: ease-out;\r\n}\r\n\r\na {\r\n  outline-offset : 3px !important;\r\n}\r\n.org-chart {\r\n  position: relative;\r\n  padding-bottom: 40px;\r\n  \r\n  @media screen and (max-width: 1024px) {\r\n    overflow: hidden;\r\n  }\r\n\r\n  .orgchart-search {\r\n    height: fit-content;\r\n    background-color: white;\r\n    .select2-default{\r\n      color: #485563;\r\n      @if ($color-darker) {\r\n      \tcolor: $color-darker !important;\r\n      }    \r\n    }\r\n  }\r\n  \r\n  .orgchart-search, \r\n  .tier-indicator {\r\n    position: absolute;\r\n    top: 10px;\r\n    z-index: 1;\r\n  }\r\n  \r\n  .loading-screen {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    background-color: rgba(black, 0.3);\r\n    text-align: center;\r\n    z-index: 99;\r\n    @include animate(slide, 200ms, 0, normal, 1, forwards);\r\n    \r\n    &.out {\r\n      @include animate(slide, 200ms, 0, reverse, 1, forwards);\r\n    }\r\n    \r\n    p {\r\n      position: absolute;\r\n      height: 60px;\r\n      width: 300px;\r\n      padding: 20px 30px;\r\n      border-radius: 3px;\r\n      background-color: white;\r\n      @if ($color-lightest) {\r\n        background-color: $color-lightest;\r\n      }\r\n      top: 0;\r\n      left: 50%;\r\n      bottom: 0;\r\n      margin: auto;\r\n      margin-left: -155px;\r\n    }\r\n  }\r\n  \r\n  .orgchart-search {\r\n\twidth: 360px;\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      top: inherit;\r\n      bottom: 15px;\r\n      position: relative;\r\n      margin-top: 15px;\r\n    } \r\n    \r\n    @media screen and (min-width: 421px) {\r\n\t\twidth: 360px;\r\n    } \r\n    \r\n    @media screen and (max-width: 420px) {\r\n\t\twidth: 300px;\r\n    }\r\n    }    \r\n  }\r\n  \r\n  .sr-only {\r\n    position:absolute;\r\n    left:-10000px;\r\n    top:auto;\r\n    width:1px;\r\n    height:1px;\r\n    overflow:hidden;\r\n  }\r\n  \r\n  .tier-indicator {\r\n    padding-top: 5px;\r\n    list-style: none;\r\n    \r\n    @media screen and (max-width: 767px) {\r\n    \ttop: 0; \r\n    }    \r\n    \r\n\t  li {      \r\n      &:after,\r\n      &:not(:first-child):before {\r\n        content: \"\";\r\n        display: inline-block;\r\n        background-color: #BDC0C4;\r\n        @if ($color-light) {\r\n          background-color: $color-light;\r\n        }  \r\n        @if ($color-darker) {\r\n          background-color: $color-darker;\r\n        }  \r\n      }\r\n\r\n      &.active {\r\n        span {\r\n          font-weight: bold;\r\n        }\r\n        &:after {\r\n          background-color: #428BCA;\r\n          @if ($primary) {\r\n            background-color: $primary;\r\n          }   \r\n        }\r\n      }\r\n\r\n      &:after {\r\n        height: 5px;\r\n        width: 5px;\r\n        margin-bottom: 2px;\r\n        border-radius: 5px;\r\n      }\r\n\r\n      &:not(:first-child):before {\r\n        position: absolute;\r\n        right: 0;\r\n        height: 15px;\r\n        width: 1px;\r\n        margin-right: 2px;\r\n        margin-top: -7px;\r\n      }\r\n\r\n      span {\r\n        padding: 0 5px;\r\n        background-color: #F0F3F4;\r\n        color: #485563;\r\n        cursor: pointer;\r\n        @if ($color-darker) {\r\n          color: $color-darker !important;\r\n        }    \r\n        @if ($sp-body-bg) {\r\n          background-color: $sp-body-bg;\r\n        }\r\n      }\r\n    }    \r\n  }\r\n  \r\n  &.fixie {\r\n      z-index: 11;\r\n    .orgchart-search,\r\n    .tier-indicator {\r\n      top: 0px;\r\n      position: fixed;\r\n      border-radius: 2px;\r\n      background-color: #f6f6f8;\r\n    }\r\n\r\n    @media screen and (min-width: 768px) {\r\n      .orgchart-search {\r\n    \ttop: 10px;\r\n      }\r\n    }\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      .orgchart-search {\r\n        margin-left: 15px;\r\n      }\r\n\r\n      .tier-indicator {\r\n        margin-right: 0;\r\n        position: fixed;\r\n      }    \r\n    }\r\n  }\r\n  \r\n\t.orgchart-search {    \r\n    .avatar {\r\n      float: left;\r\n      background-size: cover;\r\n      border-radius: 100px;            \r\n      background-color: white;\r\n      border: 1px solid #BDC0C4;\r\n      color: #343D47;\r\n      @if ($color-lightest) {\r\n        background-color: $color-lightest;\r\n      }\r\n      @if ($color-light) {\r\n        border-color: $color-light;\r\n      }\r\n      @if ($color-darkest) {\r\n        color: $color-darkest;\r\n      }     \r\n      display: inline-block;\r\n      margin-right: 5px;\r\n      text-align: center;\r\n      width: 24px;\r\n      height: 24px;\r\n      line-height: 21px;\r\n      font-size: 1rem;\r\n      font-weight: bold;\r\n      top: 4px;\r\n      text-transform: uppercase;\r\n    }\r\n      \r\n    .select2-chosen {\r\n      margin-bottom: -14px;\r\n      \r\n      span {\r\n        width: 200px;\r\n      }\r\n      \r\n      span,\r\n      .title {\r\n        @include ellipsis(100%);\r\n        padding: 0;\r\n        margin-top: -1px;\r\n      }\r\n\r\n      .name {\r\n        display: inline-block;\r\n        max-width: 50%;\r\n      } \r\n      \r\n      .title {\r\n        display: inline-block;        \r\n        max-width: 33%;\r\n        color: #343D47;\r\n        @if ($color-darkest) {\r\n          color: $color-darkest;\r\n        }         \r\n      }            \r\n    }    \r\n      .select2-container .select2-choice ,.select2-arrow {\r\n        @if ($color-darker) {\r\n          border-color: $color-darker;\r\n        }\r\n      }\r\n  }\r\n  \r\n  @media screen and (min-width: 421px) and (max-width: 768px) {\r\n    .orgchart-search {\r\n      margin-left: 20px;\r\n    }\r\n    \r\n    .tier-indicator {\r\n\t  margin-right: 20px;\r\n    }\r\n  }\r\n  \r\n  @media screen and (min-width: 421px) and (max-width: 550px) {\r\n    \r\n    .tiers.first {\r\n      margin-top: 5px;\r\n    }\r\n    \r\n  }\r\n  \r\n  @media screen and (max-width: 640px) {\r\n    \r\n    .tier-indicator {\r\n\t  position: relative !important;\r\n    }\r\n  }\r\n  \r\n  @media screen and (max-width: 420px) {\r\n    .orgchart-search {\r\n      width: calc(100% - 30px);\r\n      margin-left: 15px;\r\n    }\r\n    \r\n    .tier-indicator {\r\n\t  margin-right: 15px;\r\n\t  margin-top: 15px;\r\n    }    \r\n  }  \r\n  \r\n  .tiers {\r\n   \tposition: relative;\r\n    \r\n    .reports:before {\r\n      content: \"\";\r\n      height: 20px;\r\n      width: 1px;\r\n      background-color: #BDC0C4;\r\n      color: #343D47;\r\n      @if ($color-light) {\r\n        background-color: $color-light;\r\n      }\r\n      @if ($color-darkest) {\r\n        color: $color-darkest;\r\n      }\r\n      @if ($color-darker) {\r\n        background-color: $color-darker;\r\n      }\r\n      left: 50%;\r\n      position: absolute;\r\n      z-index: -1;\r\n    }\r\n    \r\n    &.first.last.no-report .reports:before,\r\n    &.last.no-report .reports:before {\r\n      content: none;\r\n    }\r\n    \r\n    .card-back {\r\n      display: none;\r\n    }\r\n    \r\n    &.first {\r\n      @media screen and (min-width: 768px) {\r\n      \tpadding-top: 40px;\r\n      }\r\n    }\r\n    \r\n    &.last {\r\n      @media screen and (max-width: 767px) {\r\n      \tpadding-bottom: 20px;\r\n      }\r\n      \r\n      .highlight {\r\n        .card {\r\n          border-color: $primary;\r\n        }\r\n      }\r\n      \r\n      .col-lg-3 {\r\n        .name {\r\n          color: $color-darkest;\r\n          font-size: 1.8rem;\r\n        }\r\n        \r\n        .avatar {\r\n          @include animate(floop, 200ms, 0, normal, 1, forwards);\r\n        }\r\n        \r\n        .profile-link, \r\n        .card-back {\r\n          opacity: 0;       \r\n          margin-top: -5px;\r\n          margin-bottom: 5px;\r\n          display: block;\r\n          @include animate(bloop, 200ms, 200ms, normal, 1, forwards);          \r\n        }\r\n        \r\n        .profile-link {          \r\n          display: inline-block;\r\n          margin-bottom: 10px !important;\r\n        }\r\n      }\r\n    }    \r\n  }\r\n  \r\n  .person {\r\n    padding: 40px 0 0;\r\n    text-align: center;\r\n    \r\n    & > div {\r\n      float: none;\r\n      display: inline-block;\r\n      @include trans(width, 200ms);\r\n    }\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      padding-top: 50px;\r\n    }\r\n  }\r\n  \r\n  .reports {    \r\n    @include animate(slide, 600ms, 0, normal, 1, forwards);    \r\n    @media screen and (max-width: 768px) {\r\n      padding-left: 10px;\r\n      padding-right: 10px;      \r\n    }\r\n    \r\n    &.center {\r\n      text-align: center;\r\n      \r\n      .report {\r\n        display: inline-block;\r\n        float: none;\r\n        vertical-align: top;\r\n      }\r\n    }\r\n  }\r\n  \r\n  .report {\r\n    cursor: pointer;    \r\n    padding: 20px 10px 0;\r\n    \r\n    &:nth-child(-n+6) {\r\n      padding-top: 40px;\r\n    }\r\n    \r\n    .card {\r\n      .card-container {\r\n        min-height: 180px;\r\n      }\r\n    }        \r\n  }\r\n  \r\n  .center {\r\n\tfloat: none;\r\n    margin: auto;\r\n  }\r\n  \r\n  .card {\r\n    padding: 25px 10px;\r\n    position: relative;\r\n    background-color: $background-primary;\r\n    border: 1px solid #BDC0C4;    \r\n    @if ($color-lightest) {\r\n    \tbackground-color: $color-lightest;\r\n    }\r\n    @if ($color-light) {\r\n      border-color: $color-light;\r\n    }    \r\n      @if ($color-darker) {\r\n        border-color: $color-darker; \r\n      }\r\n    text-align: center;\r\n    border-radius: 3px; \r\n    @include trans(border-color, 200ms);\r\n    \r\n    &:focus {\r\n      outline: 5px auto -webkit-focus-ring-color;\r\n    }\r\n\r\n    .card-container {\r\n      p {\r\n        font-size: 1.2rem;\r\n        line-height: 1.42em;\r\n        \r\n        &.name {\r\n          font-size: 1.4rem;\r\n        }\r\n      }\r\n      \t@media screen and (max-width: 420px) {\r\n\t\t\tfont-size: 1rem;\r\n\t           &.name {\r\n\t          font-size: 1.1rem;\r\n\t        }\r\n    }\r\n    }\r\n    \r\n    .card-back-container {\r\n      padding-top: 15px;\r\n      font-size: 1.3rem;\r\n    }\r\n    \r\n    .avatar {\r\n      margin-bottom: 20px;\r\n      \r\n      .report-badge {\r\n        position: absolute;\r\n        height: 22px;\r\n        min-width: 22px;\r\n        left: 48%;\r\n        bottom: 0;\r\n        margin-left: -30px;\r\n        background-color: #428BCA;\r\n        @if ($primary) {\r\n          background-color: $primary;\r\n        } \r\n        color: white;\r\n        padding-top: 4px;\r\n        display: inline-block;\r\n        border-radius: 30px;\r\n        font-size: 1rem;\r\n      }\r\n\r\n      .view-profile {\r\n        display: inline-block;\r\n        height: 74px;\r\n        width: 74px;\r\n        background-size: 110%;\r\n        background-position: center;\r\n        background-repeat: no-repeat;\r\n        border: 1px solid #BDC0C4;\r\n        color: #343D47;\r\n        @if ($color-light) {\r\n          border-color: $color-light;\r\n        }\r\n        @if ($color-darkest) {\r\n          color: $color-darkest;\r\n        }      \r\n        @if ($color-darker) { \r\n          border-color: $color-darker; \r\n        }\r\n        border-radius: 50px;        \r\n        font-size: 3rem;\r\n        font-weight: bold;\r\n        text-transform: uppercase;\r\n        padding-top: 14px;\r\n\r\n        &.img {\r\n          color: transparent;\r\n        }\r\n      }\r\n    }\r\n    \r\n    .name {\r\n      font-size: 1.3rem;\r\n      font-weight: 600;\r\n      color: $primary !important;\r\n      @include trans(all, 200ms);\r\n    }\r\n    \r\n    .title {\r\n      small {\r\n        font-weight: 600;\r\n      }\r\n    }\r\n    \r\n    .profile-link {\r\n      display: none;\r\n      font-size: 1.2rem;\r\n      margin: 5px 0 0;\r\n    }\r\n  }\r\n  \r\n  .report {    \r\n    &:nth-child(-n+6):before {\r\n      content: \"\";\r\n      position: absolute;\r\n      width: 100%;\r\n      height: 1px;\r\n      background-color: #BDC0C4;\r\n      @if ($color-light) {\r\n        background-color: $color-light;\r\n      } \r\n      @if ($color-darker) {\r\n        background-color: $color-darker;\r\n      }\r\n      top: 0;\r\n      right: 50%;\r\n      margin-top: 20px;\r\n    }\r\n    \r\n    &:first-child:before {\r\n      content: none;\r\n    }\r\n    \r\n    @media screen and (min-width: 768px) and (max-width: 1200px) {\r\n      &:nth-child(n+5) {\r\n        &:before {\r\n          content: none;\r\n        }\r\n      }\r\n      \r\n      &:nth-child(n+5) {\r\n        padding-top: 20px;\r\n      }\r\n    }\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      &:nth-child(n+3) {\r\n        &:before {\r\n          content: none;\r\n        }\r\n      }\r\n      \r\n      &:nth-child(n+3) {\r\n        padding-top: 20px;\r\n      }\r\n    }  \r\n    \r\n    .card {\r\n      .fa-spinner {\r\n        position: absolute;\r\n        top: 0;\r\n        left: 0;\r\n        margin: 15px 0 0 15px;\r\n      }\r\n    }\r\n  }\r\n  \r\n  p {\r\n    margin: 0;\r\n    \r\n    &:not(.email),\r\n    &:not(.phone),\r\n    &:not(.mobile_phone) {\r\n      @include ellipsis(100%);\r\n    }\r\n    \r\n    a,    \r\n    label {\r\n      margin-bottom: 0;\r\n    }\r\n    \r\n    label {\r\n      display: block;\r\n      font-weight: 600;\r\n    }\r\n    \r\n    a,\r\n    span {\r\n\t\t\t@include ellipsis(100%);\r\n      display: inline-block;\r\n      \r\n      span {\r\n        display: inline;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n\r\n@keyframes slide {\r\n\t0% {\r\n  \topacity: 0;\r\n    margin-top: -10px;\r\n  }\r\n\t100% {\r\n    opacity: 1;\r\n    margin-top: 0;\r\n  }  \r\n}\r\n\r\n@keyframes bloop {\r\n\t100% {\r\n    opacity: 1;\r\n    margin-top: 0;\r\n    margin-bottom: 0;\r\n  }  \r\n}\r\n\r\n@keyframes floop {\r\n  0% {\r\n    transform: scale(1);\r\n  }\r\n  50% {\r\n    transform: scale(1.1);\r\n  }\r\n\t100% {\r\n\t\ttransform: scale(1);\r\n  }  \r\n}\r\n\r\n.org-chart {\r\n  .org-chart-container {\r\n    padding: 32px 16px 48px;\r\n  }\r\n\r\n  .org-chart-summary,\r\n  .org-chart-empty {\r\n    color: #485563;\r\n    font-size: 1.4rem;\r\n    margin: 0 0 24px;\r\n    text-align: center;\r\n  }\r\n\r\n  .department-forest {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 48px;\r\n    align-items: center;\r\n  }\r\n\r\n  .department-node {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    position: relative;\r\n  }\r\n\r\n  .department-card {\r\n    width: 280px;\r\n    max-width: 100%;\r\n  }\r\n\r\n  .department-card .card-container {\r\n    min-height: 0;\r\n  }\r\n\r\n  .department-card p + p {\r\n    margin-top: 8px;\r\n  }\r\n\r\n  .department-card .name span {\r\n    color: $primary !important;\r\n    font-size: 1.8rem;\r\n    font-weight: 600;\r\n  }\r\n\r\n  .department-card .department-parent span {\r\n    color: #485563;\r\n    font-weight: 600;\r\n  }\r\n\r\n  .department-meta label {\r\n    display: block;\r\n    font-weight: 600;\r\n    margin-bottom: 2px;\r\n  }\r\n\r\n  .department-children {\r\n    margin-top: 28px;\r\n    padding-top: 28px;\r\n    position: relative;\r\n  }\r\n\r\n  .department-children:before {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 0;\r\n    left: 50%;\r\n    width: 1px;\r\n    height: 28px;\r\n    background-color: #BDC0C4;\r\n  }\r\n\r\n  .department-row {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: flex-start;\r\n    gap: 24px;\r\n    flex-wrap: wrap;\r\n    position: relative;\r\n  }\r\n\r\n  .department-children.multi-child .department-row:before {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 0;\r\n    left: 12%;\r\n    right: 12%;\r\n    height: 1px;\r\n    background-color: #BDC0C4;\r\n  }\r\n\r\n  .department-child {\r\n    padding-top: 28px;\r\n    position: relative;\r\n  }\r\n\r\n  .department-child:before {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 0;\r\n    left: 50%;\r\n    width: 1px;\r\n    height: 28px;\r\n    background-color: #BDC0C4;\r\n  }\r\n\r\n  @media screen and (max-width: 767px) {\r\n    .org-chart-container {\r\n      padding: 24px 8px 40px;\r\n    }\r\n\r\n    .department-row {\r\n      gap: 16px;\r\n    }\r\n\r\n    .department-card {\r\n      width: min(280px, calc(100vw - 32px));\r\n    }\r\n\r\n    .department-children.multi-child .department-row:before {\r\n      left: 50%;\r\n      right: auto;\r\n      width: 1px;\r\n      height: 100%;\r\n    }\r\n  }\r\n}\r\n",
+            "readonly": false,
+            "hint": "",
+            "name": "css",
+            "attributes": {},
+            "choice": 0,
+            "value": "@mixin ellipsis ($width) {\r\n  max-width: $width;\r\n  white-space: nowrap;\r\n  text-overflow: ellipsis;\r\n  overflow: hidden;\r\n}\r\n\r\n@mixin animate ($name, $dur, $delay, $dir, $count, $mode) {\r\n  animation-name: $name;\r\n  animation-duration: $dur;\r\n  animation-delay: $delay;\r\n  animation-direction: $dir;\r\n  animation-iteration-count: $count;\r\n\tanimation-fill-mode: $mode;\r\n  animation-timing-function: ease-out;\r\n}\r\n\r\n@mixin trans ($prop, $dur) {\r\n  transition-property: $prop;\r\n  transition-duration: $dur;\r\n  transition-timing-function: ease-out;\r\n}\r\n\r\na {\r\n  outline-offset : 3px !important;\r\n}\r\n.org-chart {\r\n  position: relative;\r\n  padding-bottom: 40px;\r\n  \r\n  @media screen and (max-width: 1024px) {\r\n    overflow: hidden;\r\n  }\r\n\r\n  .orgchart-search {\r\n    height: fit-content;\r\n    background-color: white;\r\n    .select2-default{\r\n      color: #485563;\r\n      @if ($color-darker) {\r\n      \tcolor: $color-darker !important;\r\n      }    \r\n    }\r\n  }\r\n  \r\n  .orgchart-search, \r\n  .tier-indicator {\r\n    position: absolute;\r\n    top: 10px;\r\n    z-index: 1;\r\n  }\r\n  \r\n  .loading-screen {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    background-color: rgba(black, 0.3);\r\n    text-align: center;\r\n    z-index: 99;\r\n    @include animate(slide, 200ms, 0, normal, 1, forwards);\r\n    \r\n    &.out {\r\n      @include animate(slide, 200ms, 0, reverse, 1, forwards);\r\n    }\r\n    \r\n    p {\r\n      position: absolute;\r\n      height: 60px;\r\n      width: 300px;\r\n      padding: 20px 30px;\r\n      border-radius: 3px;\r\n      background-color: white;\r\n      @if ($color-lightest) {\r\n        background-color: $color-lightest;\r\n      }\r\n      top: 0;\r\n      left: 50%;\r\n      bottom: 0;\r\n      margin: auto;\r\n      margin-left: -155px;\r\n    }\r\n  }\r\n  \r\n  .orgchart-search {\r\n\twidth: 360px;\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      top: inherit;\r\n      bottom: 15px;\r\n      position: relative;\r\n      margin-top: 15px;\r\n    } \r\n    \r\n    @media screen and (min-width: 421px) {\r\n\t\twidth: 360px;\r\n    } \r\n    \r\n    @media screen and (max-width: 420px) {\r\n\t\twidth: 300px;\r\n    }\r\n    }    \r\n  }\r\n  \r\n  .sr-only {\r\n    position:absolute;\r\n    left:-10000px;\r\n    top:auto;\r\n    width:1px;\r\n    height:1px;\r\n    overflow:hidden;\r\n  }\r\n  \r\n  .tier-indicator {\r\n    padding-top: 5px;\r\n    list-style: none;\r\n    \r\n    @media screen and (max-width: 767px) {\r\n    \ttop: 0; \r\n    }    \r\n    \r\n\t  li {      \r\n      &:after,\r\n      &:not(:first-child):before {\r\n        content: \"\";\r\n        display: inline-block;\r\n        background-color: #BDC0C4;\r\n        @if ($color-light) {\r\n          background-color: $color-light;\r\n        }  \r\n        @if ($color-darker) {\r\n          background-color: $color-darker;\r\n        }  \r\n      }\r\n\r\n      &.active {\r\n        span {\r\n          font-weight: bold;\r\n        }\r\n        &:after {\r\n          background-color: #428BCA;\r\n          @if ($primary) {\r\n            background-color: $primary;\r\n          }   \r\n        }\r\n      }\r\n\r\n      &:after {\r\n        height: 5px;\r\n        width: 5px;\r\n        margin-bottom: 2px;\r\n        border-radius: 5px;\r\n      }\r\n\r\n      &:not(:first-child):before {\r\n        position: absolute;\r\n        right: 0;\r\n        height: 15px;\r\n        width: 1px;\r\n        margin-right: 2px;\r\n        margin-top: -7px;\r\n      }\r\n\r\n      span {\r\n        padding: 0 5px;\r\n        background-color: #F0F3F4;\r\n        color: #485563;\r\n        cursor: pointer;\r\n        @if ($color-darker) {\r\n          color: $color-darker !important;\r\n        }    \r\n        @if ($sp-body-bg) {\r\n          background-color: $sp-body-bg;\r\n        }\r\n      }\r\n    }    \r\n  }\r\n  \r\n  &.fixie {\r\n      z-index: 11;\r\n    .orgchart-search,\r\n    .tier-indicator {\r\n      top: 0px;\r\n      position: fixed;\r\n      border-radius: 2px;\r\n      background-color: #f6f6f8;\r\n    }\r\n\r\n    @media screen and (min-width: 768px) {\r\n      .orgchart-search {\r\n    \ttop: 10px;\r\n      }\r\n    }\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      .orgchart-search {\r\n        margin-left: 15px;\r\n      }\r\n\r\n      .tier-indicator {\r\n        margin-right: 0;\r\n        position: fixed;\r\n      }    \r\n    }\r\n  }\r\n  \r\n\t.orgchart-search {    \r\n    .avatar {\r\n      float: left;\r\n      background-size: cover;\r\n      border-radius: 100px;            \r\n      background-color: white;\r\n      border: 1px solid #BDC0C4;\r\n      color: #343D47;\r\n      @if ($color-lightest) {\r\n        background-color: $color-lightest;\r\n      }\r\n      @if ($color-light) {\r\n        border-color: $color-light;\r\n      }\r\n      @if ($color-darkest) {\r\n        color: $color-darkest;\r\n      }     \r\n      display: inline-block;\r\n      margin-right: 5px;\r\n      text-align: center;\r\n      width: 24px;\r\n      height: 24px;\r\n      line-height: 21px;\r\n      font-size: 1rem;\r\n      font-weight: bold;\r\n      top: 4px;\r\n      text-transform: uppercase;\r\n    }\r\n      \r\n    .select2-chosen {\r\n      margin-bottom: -14px;\r\n      \r\n      span {\r\n        width: 200px;\r\n      }\r\n      \r\n      span,\r\n      .title {\r\n        @include ellipsis(100%);\r\n        padding: 0;\r\n        margin-top: -1px;\r\n      }\r\n\r\n      .name {\r\n        display: inline-block;\r\n        max-width: 50%;\r\n      } \r\n      \r\n      .title {\r\n        display: inline-block;        \r\n        max-width: 33%;\r\n        color: #343D47;\r\n        @if ($color-darkest) {\r\n          color: $color-darkest;\r\n        }         \r\n      }            \r\n    }    \r\n      .select2-container .select2-choice ,.select2-arrow {\r\n        @if ($color-darker) {\r\n          border-color: $color-darker;\r\n        }\r\n      }\r\n  }\r\n  \r\n  @media screen and (min-width: 421px) and (max-width: 768px) {\r\n    .orgchart-search {\r\n      margin-left: 20px;\r\n    }\r\n    \r\n    .tier-indicator {\r\n\t  margin-right: 20px;\r\n    }\r\n  }\r\n  \r\n  @media screen and (min-width: 421px) and (max-width: 550px) {\r\n    \r\n    .tiers.first {\r\n      margin-top: 5px;\r\n    }\r\n    \r\n  }\r\n  \r\n  @media screen and (max-width: 640px) {\r\n    \r\n    .tier-indicator {\r\n\t  position: relative !important;\r\n    }\r\n  }\r\n  \r\n  @media screen and (max-width: 420px) {\r\n    .orgchart-search {\r\n      width: calc(100% - 30px);\r\n      margin-left: 15px;\r\n    }\r\n    \r\n    .tier-indicator {\r\n\t  margin-right: 15px;\r\n\t  margin-top: 15px;\r\n    }    \r\n  }  \r\n  \r\n  .tiers {\r\n   \tposition: relative;\r\n    \r\n    .reports:before {\r\n      content: \"\";\r\n      height: 20px;\r\n      width: 1px;\r\n      background-color: #BDC0C4;\r\n      color: #343D47;\r\n      @if ($color-light) {\r\n        background-color: $color-light;\r\n      }\r\n      @if ($color-darkest) {\r\n        color: $color-darkest;\r\n      }\r\n      @if ($color-darker) {\r\n        background-color: $color-darker;\r\n      }\r\n      left: 50%;\r\n      position: absolute;\r\n      z-index: -1;\r\n    }\r\n    \r\n    &.first.last.no-report .reports:before,\r\n    &.last.no-report .reports:before {\r\n      content: none;\r\n    }\r\n    \r\n    .card-back {\r\n      display: none;\r\n    }\r\n    \r\n    &.first {\r\n      @media screen and (min-width: 768px) {\r\n      \tpadding-top: 40px;\r\n      }\r\n    }\r\n    \r\n    &.last {\r\n      @media screen and (max-width: 767px) {\r\n      \tpadding-bottom: 20px;\r\n      }\r\n      \r\n      .highlight {\r\n        .card {\r\n          border-color: $primary;\r\n        }\r\n      }\r\n      \r\n      .col-lg-3 {\r\n        .name {\r\n          color: $color-darkest;\r\n          font-size: 1.8rem;\r\n        }\r\n        \r\n        .avatar {\r\n          @include animate(floop, 200ms, 0, normal, 1, forwards);\r\n        }\r\n        \r\n        .profile-link, \r\n        .card-back {\r\n          opacity: 0;       \r\n          margin-top: -5px;\r\n          margin-bottom: 5px;\r\n          display: block;\r\n          @include animate(bloop, 200ms, 200ms, normal, 1, forwards);          \r\n        }\r\n        \r\n        .profile-link {          \r\n          display: inline-block;\r\n          margin-bottom: 10px !important;\r\n        }\r\n      }\r\n    }    \r\n  }\r\n  \r\n  .person {\r\n    padding: 40px 0 0;\r\n    text-align: center;\r\n    \r\n    & > div {\r\n      float: none;\r\n      display: inline-block;\r\n      @include trans(width, 200ms);\r\n    }\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      padding-top: 50px;\r\n    }\r\n  }\r\n  \r\n  .reports {    \r\n    @include animate(slide, 600ms, 0, normal, 1, forwards);    \r\n    @media screen and (max-width: 768px) {\r\n      padding-left: 10px;\r\n      padding-right: 10px;      \r\n    }\r\n    \r\n    &.center {\r\n      text-align: center;\r\n      \r\n      .report {\r\n        display: inline-block;\r\n        float: none;\r\n        vertical-align: top;\r\n      }\r\n    }\r\n  }\r\n  \r\n  .report {\r\n    cursor: pointer;    \r\n    padding: 20px 10px 0;\r\n    \r\n    &:nth-child(-n+6) {\r\n      padding-top: 40px;\r\n    }\r\n    \r\n    .card {\r\n      .card-container {\r\n        min-height: 180px;\r\n      }\r\n    }        \r\n  }\r\n  \r\n  .center {\r\n\tfloat: none;\r\n    margin: auto;\r\n  }\r\n  \r\n  .card {\r\n    padding: 25px 10px;\r\n    position: relative;\r\n    background-color: $background-primary;\r\n    border: 1px solid #BDC0C4;    \r\n    @if ($color-lightest) {\r\n    \tbackground-color: $color-lightest;\r\n    }\r\n    @if ($color-light) {\r\n      border-color: $color-light;\r\n    }    \r\n      @if ($color-darker) {\r\n        border-color: $color-darker; \r\n      }\r\n    text-align: center;\r\n    border-radius: 3px; \r\n    @include trans(border-color, 200ms);\r\n    \r\n    &:focus {\r\n      outline: 5px auto -webkit-focus-ring-color;\r\n    }\r\n\r\n    .card-container {\r\n      p {\r\n        font-size: 1.2rem;\r\n        line-height: 1.42em;\r\n        \r\n        &.name {\r\n          font-size: 1.4rem;\r\n        }\r\n      }\r\n      \t@media screen and (max-width: 420px) {\r\n\t\t\tfont-size: 1rem;\r\n\t           &.name {\r\n\t          font-size: 1.1rem;\r\n\t        }\r\n    }\r\n    }\r\n    \r\n    .card-back-container {\r\n      padding-top: 15px;\r\n      font-size: 1.3rem;\r\n    }\r\n    \r\n    .avatar {\r\n      margin-bottom: 20px;\r\n      \r\n      .report-badge {\r\n        position: absolute;\r\n        height: 22px;\r\n        min-width: 22px;\r\n        left: 48%;\r\n        bottom: 0;\r\n        margin-left: -30px;\r\n        background-color: #428BCA;\r\n        @if ($primary) {\r\n          background-color: $primary;\r\n        } \r\n        color: white;\r\n        padding-top: 4px;\r\n        display: inline-block;\r\n        border-radius: 30px;\r\n        font-size: 1rem;\r\n      }\r\n\r\n      .view-profile {\r\n        display: inline-block;\r\n        height: 74px;\r\n        width: 74px;\r\n        background-size: 110%;\r\n        background-position: center;\r\n        background-repeat: no-repeat;\r\n        border: 1px solid #BDC0C4;\r\n        color: #343D47;\r\n        @if ($color-light) {\r\n          border-color: $color-light;\r\n        }\r\n        @if ($color-darkest) {\r\n          color: $color-darkest;\r\n        }      \r\n        @if ($color-darker) { \r\n          border-color: $color-darker; \r\n        }\r\n        border-radius: 50px;        \r\n        font-size: 3rem;\r\n        font-weight: bold;\r\n        text-transform: uppercase;\r\n        padding-top: 14px;\r\n\r\n        &.img {\r\n          color: transparent;\r\n        }\r\n      }\r\n    }\r\n    \r\n    .name {\r\n      font-size: 1.3rem;\r\n      font-weight: 600;\r\n      color: $primary !important;\r\n      @include trans(all, 200ms);\r\n    }\r\n    \r\n    .title {\r\n      small {\r\n        font-weight: 600;\r\n      }\r\n    }\r\n    \r\n    .profile-link {\r\n      display: none;\r\n      font-size: 1.2rem;\r\n      margin: 5px 0 0;\r\n    }\r\n  }\r\n  \r\n  .report {    \r\n    &:nth-child(-n+6):before {\r\n      content: \"\";\r\n      position: absolute;\r\n      width: 100%;\r\n      height: 1px;\r\n      background-color: #BDC0C4;\r\n      @if ($color-light) {\r\n        background-color: $color-light;\r\n      } \r\n      @if ($color-darker) {\r\n        background-color: $color-darker;\r\n      }\r\n      top: 0;\r\n      right: 50%;\r\n      margin-top: 20px;\r\n    }\r\n    \r\n    &:first-child:before {\r\n      content: none;\r\n    }\r\n    \r\n    @media screen and (min-width: 768px) and (max-width: 1200px) {\r\n      &:nth-child(n+5) {\r\n        &:before {\r\n          content: none;\r\n        }\r\n      }\r\n      \r\n      &:nth-child(n+5) {\r\n        padding-top: 20px;\r\n      }\r\n    }\r\n    \r\n    @media screen and (max-width: 767px) {\r\n      &:nth-child(n+3) {\r\n        &:before {\r\n          content: none;\r\n        }\r\n      }\r\n      \r\n      &:nth-child(n+3) {\r\n        padding-top: 20px;\r\n      }\r\n    }  \r\n    \r\n    .card {\r\n      .fa-spinner {\r\n        position: absolute;\r\n        top: 0;\r\n        left: 0;\r\n        margin: 15px 0 0 15px;\r\n      }\r\n    }\r\n  }\r\n  \r\n  p {\r\n    margin: 0;\r\n    \r\n    &:not(.email),\r\n    &:not(.phone),\r\n    &:not(.mobile_phone) {\r\n      @include ellipsis(100%);\r\n    }\r\n    \r\n    a,    \r\n    label {\r\n      margin-bottom: 0;\r\n    }\r\n    \r\n    label {\r\n      display: block;\r\n      font-weight: 600;\r\n    }\r\n    \r\n    a,\r\n    span {\r\n\t\t\t@include ellipsis(100%);\r\n      display: inline-block;\r\n      \r\n      span {\r\n        display: inline;\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n\r\n@keyframes slide {\r\n\t0% {\r\n  \topacity: 0;\r\n    margin-top: -10px;\r\n  }\r\n\t100% {\r\n    opacity: 1;\r\n    margin-top: 0;\r\n  }  \r\n}\r\n\r\n@keyframes bloop {\r\n\t100% {\r\n    opacity: 1;\r\n    margin-top: 0;\r\n    margin-bottom: 0;\r\n  }  \r\n}\r\n\r\n@keyframes floop {\r\n  0% {\r\n    transform: scale(1);\r\n  }\r\n  50% {\r\n    transform: scale(1.1);\r\n  }\r\n\t100% {\r\n\t\ttransform: scale(1);\r\n  }  \r\n}\r\n\r\n.org-chart {\r\n  .org-chart-container {\r\n    padding: 32px 16px 48px;\r\n  }\r\n\r\n  .org-chart-summary,\r\n  .org-chart-empty {\r\n    color: #485563;\r\n    font-size: 1.4rem;\r\n    margin: 0 0 24px;\r\n    text-align: center;\r\n  }\r\n\r\n  .department-forest {\r\n    display: flex;\r\n    flex-direction: column;\r\n    gap: 48px;\r\n    align-items: center;\r\n  }\r\n\r\n  .department-node {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    position: relative;\r\n  }\r\n\r\n  .department-card {\r\n    width: 280px;\r\n    max-width: 100%;\r\n  }\r\n\r\n  .department-card .card-container {\r\n    min-height: 0;\r\n  }\r\n\r\n  .department-card p + p {\r\n    margin-top: 8px;\r\n  }\r\n\r\n  .department-card .name span {\r\n    color: $primary !important;\r\n    font-size: 1.8rem;\r\n    font-weight: 600;\r\n  }\r\n\r\n  .department-card .department-parent span {\r\n    color: #485563;\r\n    font-weight: 600;\r\n  }\r\n\r\n  .department-meta label {\r\n    display: block;\r\n    font-weight: 600;\r\n    margin-bottom: 2px;\r\n  }\r\n\r\n  .department-children {\r\n    margin-top: 28px;\r\n    padding-top: 28px;\r\n    position: relative;\r\n  }\r\n\r\n  .department-children:before {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 0;\r\n    left: 50%;\r\n    width: 1px;\r\n    height: 28px;\r\n    background-color: #BDC0C4;\r\n  }\r\n\r\n  .department-row {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: flex-start;\r\n    gap: 24px;\r\n    flex-wrap: wrap;\r\n    position: relative;\r\n  }\r\n\r\n  .department-children.multi-child .department-row:before {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 0;\r\n    left: 12%;\r\n    right: 12%;\r\n    height: 1px;\r\n    background-color: #BDC0C4;\r\n  }\r\n\r\n  .department-child {\r\n    padding-top: 28px;\r\n    position: relative;\r\n  }\r\n\r\n  .department-child:before {\r\n    content: \"\";\r\n    position: absolute;\r\n    top: 0;\r\n    left: 50%;\r\n    width: 1px;\r\n    height: 28px;\r\n    background-color: #BDC0C4;\r\n  }\r\n\r\n  @media screen and (max-width: 767px) {\r\n    .org-chart-container {\r\n      padding: 24px 8px 40px;\r\n    }\r\n\r\n    .department-row {\r\n      gap: 16px;\r\n    }\r\n\r\n    .department-card {\r\n      width: min(280px, calc(100vw - 32px));\r\n    }\r\n\r\n    .department-children.multi-child .department-row:before {\r\n      left: 50%;\r\n      right: auto;\r\n      width: 1px;\r\n      height: 100%;\r\n    }\r\n  }\r\n}\r\n",
+            "max_length": 8000,
+            "ed": {
+                "name": "css"
+            }
+        },
+        "roles": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": 12,
+            "label": "Roles",
+            "sys_readonly": false,
+            "type": "user_roles",
+            "mandatory": false,
+            "displayValue": "",
+            "readonly": false,
+            "hint": "",
+            "name": "roles",
+            "attributes": {
+                "no_truncate": "true",
+                "update_exempt": "true",
+                "record_watcher_blacklist": "true"
+            },
+            "choice": 0,
+            "value": "",
+            "max_length": 255,
+            "ed": {
+                "name": "roles"
+            }
+        },
+        "link": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "Link",
+            "sys_readonly": false,
+            "type": "script",
+            "mandatory": false,
+            "displayValue": "function orgChartLink(scope, element, attr, ctrl) {\n\tvar chart = ctrl.chart;\n\tvar container = element[0].querySelector(\".org-chart-container\");\n\n\trender();\n\n\tfunction render() {\n\t\tvar forest;\n\t\tvar summary;\n\n\t\tcontainer.innerHTML = \"\";\n\n\t\tif (!chart.roots.length) {\n\t\t\tcontainer.appendChild(makeEmptyState());\n\t\t\treturn;\n\t\t}\n\n\t\tsummary = makeDom(\"p\", \"org-chart-summary\");\n\t\tsummary.textContent = chart.totalDepartments + \" \" + (chart.totalDepartments === 1 ? chart.i18n.department : chart.i18n.departments);\n\t\tcontainer.appendChild(summary);\n\n\t\tforest = makeDom(\"div\", \"department-forest\");\n\t\tchart.roots.forEach(function(root) {\n\t\t\tforest.appendChild(makeTree(root));\n\t\t});\n\n\t\tcontainer.appendChild(forest);\n\t}\n\n\tfunction makeEmptyState() {\n\t\tvar empty = makeDom(\"p\", \"org-chart-empty\");\n\t\tempty.textContent = chart.i18n.noDepartments;\n\t\treturn empty;\n\t}\n\n\tfunction makeTree(department) {\n\t\tvar node = makeDom(\"div\", \"department-node\");\n\t\tvar children = department.children || [];\n\n\t\tnode.appendChild(makeCard(department));\n\n\t\tif (children.length) {\n\t\t\tvar childContainer = makeDom(\"div\", \"department-children\");\n\t\t\tvar childRow = makeDom(\"div\", \"department-row\");\n\n\t\t\tif (children.length > 1)\n\t\t\t\tchildContainer.classList.add(\"multi-child\");\n\n\t\t\tchildren.forEach(function(child) {\n\t\t\t\tvar childWrapper = makeDom(\"div\", \"department-child\");\n\t\t\t\tchildWrapper.appendChild(makeTree(child));\n\t\t\t\tchildRow.appendChild(childWrapper);\n\t\t\t});\n\n\t\t\tchildContainer.appendChild(childRow);\n\t\t\tnode.appendChild(childContainer);\n\t\t}\n\n\t\treturn node;\n\t}\n\n\tfunction makeCard(department) {\n\t\tvar card = makeDom(\"div\", \"card department-card\");\n\t\tvar cardContainer = makeDom(\"div\", \"card-container\");\n\t\tvar avatar = makeAvatar(department);\n\n\t\tcard.appendChild(cardContainer);\n\t\tcardContainer.appendChild(avatar);\n\t\tappendSimpleLine(cardContainer, \"name\", department.name.display_value);\n\t\tappendSimpleLine(cardContainer, \"department-parent\", department.parentText);\n\t\tappendMetaLine(cardContainer, chart.i18n.parent, department.parent.display_value || chart.i18n.topLevelDepartment);\n\t\tappendMetaLine(cardContainer, chart.i18n.directChildren, department.childCount.toString());\n\n\t\treturn card;\n\t}\n\n\tfunction makeAvatar(department) {\n\t\tvar avatar = makeDom(\"div\", \"avatar\");\n\t\tvar badge = makeDom(\"span\", \"report-badge\");\n\t\tvar initial = makeDom(\"span\", \"view-profile\");\n\n\t\tinitial.textContent = department.initial;\n\t\tinitial.setAttribute(\"aria-hidden\", \"true\");\n\t\tavatar.appendChild(initial);\n\n\t\tif (department.childCount) {\n\t\t\tbadge.textContent = department.childCount;\n\t\t\tbadge.setAttribute(\"aria-hidden\", \"true\");\n\t\t\tavatar.appendChild(badge);\n\t\t}\n\n\t\treturn avatar;\n\t}\n\n\tfunction appendSimpleLine(container, className, value) {\n\t\tvar p = makeDom(\"p\", className);\n\t\tvar span = makeDom(\"span\");\n\n\t\tspan.textContent = value;\n\t\tp.appendChild(span);\n\t\tcontainer.appendChild(p);\n\t}\n\n\tfunction appendMetaLine(container, labelText, valueText) {\n\t\tvar p = makeDom(\"p\", \"department-meta\");\n\t\tvar label = makeDom(\"label\");\n\t\tvar span = makeDom(\"span\");\n\n\t\tlabel.textContent = labelText;\n\t\tspan.textContent = valueText;\n\n\t\tp.appendChild(label);\n\t\tp.appendChild(span);\n\t\tcontainer.appendChild(p);\n\t}\n\n\tfunction makeDom(tag, className) {\n\t\tvar el = document.createElement(tag);\n\n\t\tif (className)\n\t\t\tel.className = className;\n\n\t\treturn el;\n\t}\n}\n",
+            "readonly": false,
+            "hint": "",
+            "name": "link",
+            "attributes": {
+                "client_script": "true"
+            },
+            "choice": 0,
+            "value": "function orgChartLink(scope, element, attr, ctrl) {\n\tvar chart = ctrl.chart;\n\tvar container = element[0].querySelector(\".org-chart-container\");\n\n\trender();\n\n\tfunction render() {\n\t\tvar forest;\n\t\tvar summary;\n\n\t\tcontainer.innerHTML = \"\";\n\n\t\tif (!chart.roots.length) {\n\t\t\tcontainer.appendChild(makeEmptyState());\n\t\t\treturn;\n\t\t}\n\n\t\tsummary = makeDom(\"p\", \"org-chart-summary\");\n\t\tsummary.textContent = chart.totalDepartments + \" \" + (chart.totalDepartments === 1 ? chart.i18n.department : chart.i18n.departments);\n\t\tcontainer.appendChild(summary);\n\n\t\tforest = makeDom(\"div\", \"department-forest\");\n\t\tchart.roots.forEach(function(root) {\n\t\t\tforest.appendChild(makeTree(root));\n\t\t});\n\n\t\tcontainer.appendChild(forest);\n\t}\n\n\tfunction makeEmptyState() {\n\t\tvar empty = makeDom(\"p\", \"org-chart-empty\");\n\t\tempty.textContent = chart.i18n.noDepartments;\n\t\treturn empty;\n\t}\n\n\tfunction makeTree(department) {\n\t\tvar node = makeDom(\"div\", \"department-node\");\n\t\tvar children = department.children || [];\n\n\t\tnode.appendChild(makeCard(department));\n\n\t\tif (children.length) {\n\t\t\tvar childContainer = makeDom(\"div\", \"department-children\");\n\t\t\tvar childRow = makeDom(\"div\", \"department-row\");\n\n\t\t\tif (children.length > 1)\n\t\t\t\tchildContainer.classList.add(\"multi-child\");\n\n\t\t\tchildren.forEach(function(child) {\n\t\t\t\tvar childWrapper = makeDom(\"div\", \"department-child\");\n\t\t\t\tchildWrapper.appendChild(makeTree(child));\n\t\t\t\tchildRow.appendChild(childWrapper);\n\t\t\t});\n\n\t\t\tchildContainer.appendChild(childRow);\n\t\t\tnode.appendChild(childContainer);\n\t\t}\n\n\t\treturn node;\n\t}\n\n\tfunction makeCard(department) {\n\t\tvar card = makeDom(\"div\", \"card department-card\");\n\t\tvar cardContainer = makeDom(\"div\", \"card-container\");\n\t\tvar avatar = makeAvatar(department);\n\n\t\tcard.appendChild(cardContainer);\n\t\tcardContainer.appendChild(avatar);\n\t\tappendSimpleLine(cardContainer, \"name\", department.name.display_value);\n\t\tappendSimpleLine(cardContainer, \"department-parent\", department.parentText);\n\t\tappendMetaLine(cardContainer, chart.i18n.parent, department.parent.display_value || chart.i18n.topLevelDepartment);\n\t\tappendMetaLine(cardContainer, chart.i18n.directChildren, department.childCount.toString());\n\n\t\treturn card;\n\t}\n\n\tfunction makeAvatar(department) {\n\t\tvar avatar = makeDom(\"div\", \"avatar\");\n\t\tvar badge = makeDom(\"span\", \"report-badge\");\n\t\tvar initial = makeDom(\"span\", \"view-profile\");\n\n\t\tinitial.textContent = department.initial;\n\t\tinitial.setAttribute(\"aria-hidden\", \"true\");\n\t\tavatar.appendChild(initial);\n\n\t\tif (department.childCount) {\n\t\t\tbadge.textContent = department.childCount;\n\t\t\tbadge.setAttribute(\"aria-hidden\", \"true\");\n\t\t\tavatar.appendChild(badge);\n\t\t}\n\n\t\treturn avatar;\n\t}\n\n\tfunction appendSimpleLine(container, className, value) {\n\t\tvar p = makeDom(\"p\", className);\n\t\tvar span = makeDom(\"span\");\n\n\t\tspan.textContent = value;\n\t\tp.appendChild(span);\n\t\tcontainer.appendChild(p);\n\t}\n\n\tfunction appendMetaLine(container, labelText, valueText) {\n\t\tvar p = makeDom(\"p\", \"department-meta\");\n\t\tvar label = makeDom(\"label\");\n\t\tvar span = makeDom(\"span\");\n\n\t\tlabel.textContent = labelText;\n\t\tspan.textContent = valueText;\n\n\t\tp.appendChild(label);\n\t\tp.appendChild(span);\n\t\tcontainer.appendChild(p);\n\t}\n\n\tfunction makeDom(tag, className) {\n\t\tvar el = document.createElement(tag);\n\n\t\tif (className)\n\t\t\tel.className = className;\n\n\t\treturn el;\n\t}\n}\n",
+            "max_length": 65000,
+            "ed": {
+                "name": "link"
+            }
+        },
+        "description": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "Description",
+            "sys_readonly": false,
+            "type": "string",
+            "mandatory": false,
+            "displayValue": "",
+            "readonly": false,
+            "hint": "Defines what the widget does",
+            "name": "description",
+            "attributes": {
+                "edge_encryption_enabled": "true"
+            },
+            "choice": 0,
+            "value": "",
+            "max_length": 300,
+            "ed": {
+                "name": "description"
+            }
+        },
+        "demo_data": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "Demo data",
+            "sys_readonly": false,
+            "type": "json",
+            "mandatory": false,
+            "displayValue": "",
+            "readonly": false,
+            "hint": "",
+            "name": "demo_data",
+            "attributes": {},
+            "choice": 0,
+            "value": "",
+            "max_length": 8000,
+            "ed": {
+                "name": "demo_data"
+            }
+        },
+        "option_schema": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "Option schema",
+            "sys_readonly": false,
+            "type": "json",
+            "mandatory": false,
+            "displayValue": "",
+            "readonly": false,
+            "hint": "",
+            "name": "option_schema",
+            "attributes": {},
+            "choice": 0,
+            "value": "",
+            "max_length": 8000,
+            "ed": {
+                "name": "option_schema"
+            }
+        },
+        "script": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "Server script",
+            "sys_readonly": false,
+            "type": "script",
+            "mandatory": false,
+            "displayValue": "data.orgChart = data.orgChart || {};\ndata.orgChart.roots = [];\ndata.orgChart.totalDepartments = 0;\ndata.orgChart.i18n = {\n\tdepartment: gs.getMessage(\"department\"),\n\tdepartments: gs.getMessage(\"departments\"),\n\tdirectChildren: gs.getMessage(\"Direct child departments\"),\n\tnoDepartments: gs.getMessage(\"No departments found\"),\n\tparent: gs.getMessage(\"Parent\"),\n\ttopLevelDepartment: gs.getMessage(\"Top-level department\")\n};\n\nbuildDepartmentTree();\n\nfunction addActiveQueryIfPresent(gr) {\n\tif (gr.isValidField(\"active\"))\n\t\tgr.addActiveQuery();\n}\n\nfunction buildDepartmentTree() {\n\tvar gr = new GlideRecordSecure(\"cmn_department\");\n\tvar nodes = {};\n\tvar orderedIds = [];\n\n\taddActiveQueryIfPresent(gr);\n\tgr.orderBy(\"name\");\n\tgr.query();\n\n\twhile (gr.next()) {\n\t\tif (!gr.canRead())\n\t\t\tcontinue;\n\n\t\tnodes[gr.getUniqueValue()] = getDepartmentData(gr);\n\t\torderedIds.push(gr.getUniqueValue());\n\t}\n\n\torderedIds.forEach(function(sysId) {\n\t\tvar department = nodes[sysId];\n\t\tvar parentId = department.parent.value;\n\n\t\tif (parentId && nodes[parentId])\n\t\t\tnodes[parentId].children.push(department);\n\t\telse\n\t\t\tdata.orgChart.roots.push(department);\n\t});\n\n\tdata.orgChart.totalDepartments = orderedIds.length;\n\tpopulateMetadata(data.orgChart.roots);\n}\n\nfunction populateMetadata(departments) {\n\tdepartments.forEach(function(department) {\n\t\tdepartment.childCount = department.children.length;\n\t\tdepartment.childCountText = department.childCount === 1 ?\n\t\t\tgs.getMessage(\"{0} direct child department\", \"1\") :\n\t\t\tgs.getMessage(\"{0} direct child departments\", department.childCount.toString());\n\t\tdepartment.parentText = department.parent.display_value || data.orgChart.i18n.topLevelDepartment;\n\n\t\tif (department.children.length)\n\t\t\tpopulateMetadata(department.children);\n\t});\n}\n\nfunction getFieldValueAndMetadata(gr, fieldName) {\n\tvar ge = gr.getElement(fieldName);\n\treturn {\n\t\tdisplay_value: ge ? ge.getDisplayValue() : \"\",\n\t\tlabel: ge ? ge.getLabel() : \"\",\n\t\tvalue: ge ? ge.toString() : \"\",\n\t\ttype: ge ? ge.getED().getInternalType() : \"\"\n\t};\n}\n\nfunction getDepartmentInitial(gr) {\n\tvar initial = (gr.getDisplayValue(\"name\") || \"\").trim();\n\tvar cutOff = 3;\n\tvar matches;\n\n\tif (!initial)\n\t\treturn \"--\";\n\n\tif (/[^\\u0000-\\u007F]/.test(initial))\n\t\tcutOff = 2;\n\telse\n\t\tinitial = initial.replace(/\\W[\\w\\s]+\\W(?!\\w)|[^a-z\\s]/gi, \"\");\n\n\tmatches = initial.match(/[^\\u0000-\\u007F]+|\\b[a-z]/gi);\n\tinitial = matches ? matches.join(\"\") : initial.substring(0, cutOff);\n\n\treturn initial.length > cutOff ? initial.substr(0, cutOff) : initial;\n}\n\nfunction getDepartmentData(gr) {\n\treturn {\n\t\tsys_id: getFieldValueAndMetadata(gr, \"sys_id\"),\n\t\tname: getFieldValueAndMetadata(gr, \"name\"),\n\t\tparent: getFieldValueAndMetadata(gr, \"parent\"),\n\t\tinitial: getDepartmentInitial(gr),\n\t\tchildren: []\n\t};\n}\n",
+            "readonly": false,
+            "hint": "",
+            "name": "script",
+            "attributes": {},
+            "choice": 0,
+            "value": "data.orgChart = data.orgChart || {};\ndata.orgChart.roots = [];\ndata.orgChart.totalDepartments = 0;\ndata.orgChart.i18n = {\n\tdepartment: gs.getMessage(\"department\"),\n\tdepartments: gs.getMessage(\"departments\"),\n\tdirectChildren: gs.getMessage(\"Direct child departments\"),\n\tnoDepartments: gs.getMessage(\"No departments found\"),\n\tparent: gs.getMessage(\"Parent\"),\n\ttopLevelDepartment: gs.getMessage(\"Top-level department\")\n};\n\nbuildDepartmentTree();\n\nfunction addActiveQueryIfPresent(gr) {\n\tif (gr.isValidField(\"active\"))\n\t\tgr.addActiveQuery();\n}\n\nfunction buildDepartmentTree() {\n\tvar gr = new GlideRecordSecure(\"cmn_department\");\n\tvar nodes = {};\n\tvar orderedIds = [];\n\n\taddActiveQueryIfPresent(gr);\n\tgr.orderBy(\"name\");\n\tgr.query();\n\n\twhile (gr.next()) {\n\t\tif (!gr.canRead())\n\t\t\tcontinue;\n\n\t\tnodes[gr.getUniqueValue()] = getDepartmentData(gr);\n\t\torderedIds.push(gr.getUniqueValue());\n\t}\n\n\torderedIds.forEach(function(sysId) {\n\t\tvar department = nodes[sysId];\n\t\tvar parentId = department.parent.value;\n\n\t\tif (parentId && nodes[parentId])\n\t\t\tnodes[parentId].children.push(department);\n\t\telse\n\t\t\tdata.orgChart.roots.push(department);\n\t});\n\n\tdata.orgChart.totalDepartments = orderedIds.length;\n\tpopulateMetadata(data.orgChart.roots);\n}\n\nfunction populateMetadata(departments) {\n\tdepartments.forEach(function(department) {\n\t\tdepartment.childCount = department.children.length;\n\t\tdepartment.childCountText = department.childCount === 1 ?\n\t\t\tgs.getMessage(\"{0} direct child department\", \"1\") :\n\t\t\tgs.getMessage(\"{0} direct child departments\", department.childCount.toString());\n\t\tdepartment.parentText = department.parent.display_value || data.orgChart.i18n.topLevelDepartment;\n\n\t\tif (department.children.length)\n\t\t\tpopulateMetadata(department.children);\n\t});\n}\n\nfunction getFieldValueAndMetadata(gr, fieldName) {\n\tvar ge = gr.getElement(fieldName);\n\treturn {\n\t\tdisplay_value: ge ? ge.getDisplayValue() : \"\",\n\t\tlabel: ge ? ge.getLabel() : \"\",\n\t\tvalue: ge ? ge.toString() : \"\",\n\t\ttype: ge ? ge.getED().getInternalType() : \"\"\n\t};\n}\n\nfunction getDepartmentInitial(gr) {\n\tvar initial = (gr.getDisplayValue(\"name\") || \"\").trim();\n\tvar cutOff = 3;\n\tvar matches;\n\n\tif (!initial)\n\t\treturn \"--\";\n\n\tif (/[^\\u0000-\\u007F]/.test(initial))\n\t\tcutOff = 2;\n\telse\n\t\tinitial = initial.replace(/\\W[\\w\\s]+\\W(?!\\w)|[^a-z\\s]/gi, \"\");\n\n\tmatches = initial.match(/[^\\u0000-\\u007F]+|\\b[a-z]/gi);\n\tinitial = matches ? matches.join(\"\") : initial.substring(0, cutOff);\n\n\treturn initial.length > cutOff ? initial.substr(0, cutOff) : initial;\n}\n\nfunction getDepartmentData(gr) {\n\treturn {\n\t\tsys_id: getFieldValueAndMetadata(gr, \"sys_id\"),\n\t\tname: getFieldValueAndMetadata(gr, \"name\"),\n\t\tparent: getFieldValueAndMetadata(gr, \"parent\"),\n\t\tinitial: getDepartmentInitial(gr),\n\t\tchildren: []\n\t};\n}\n",
+            "max_length": 65000,
+            "ed": {
+                "name": "script"
+            }
+        },
+        "has_preview": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -7,
+            "label": "Has preview",
+            "sys_readonly": false,
+            "type": "boolean",
+            "mandatory": false,
+            "displayValue": "false",
+            "readonly": false,
+            "hint": "Defines whether preview data is available",
+            "name": "has_preview",
+            "attributes": {},
+            "choice": 0,
+            "value": "false",
+            "max_length": 40,
+            "ed": {
+                "name": "has_preview"
+            }
+        },
+        "public": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -7,
+            "label": "Public",
+            "sys_readonly": false,
+            "type": "boolean",
+            "mandatory": false,
+            "displayValue": "false",
+            "readonly": false,
+            "hint": "Widget publicly available to unauthenticated users",
+            "name": "public",
+            "attributes": {
+                "update_exempt": "true"
+            },
+            "choice": 0,
+            "value": "false",
+            "max_length": 40,
+            "ed": {
+                "name": "public"
+            }
+        },
+        "docs": {
+            "sys_mandatory": false,
+            "visible": true,
+            "table_attributes": {
+                "update_synch": "true",
+                "synch_attachments": "true"
+            },
+            "dbType": 12,
+            "label": "Docs",
+            "sys_readonly": false,
+            "type": "reference",
+            "mandatory": false,
+            "refTable": "sp_documentation",
+            "reference_type": "table",
+            "displayValue": "",
+            "readonly": false,
+            "hint": "",
+            "name": "docs",
+            "attributes": {
+                "encode_utf8": "false"
+            },
+            "reference_key": "sys_id",
+            "readonlyClickthrough": false,
+            "choice": 0,
+            "value": "",
+            "max_length": 32,
+            "ed": {
+                "reference": "sp_documentation",
+                "searchField": "title",
+                "defaultOperator": "STARTSWITH",
+                "name": "docs"
+            }
+        },
+        "client_script": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": -1,
+            "label": "Client controller",
+            "sys_readonly": false,
+            "type": "script",
+            "mandatory": false,
+            "displayValue": "function orgChartController($scope) {\n\tvar c = this;\n\n\tc.chart = {\n\t\ti18n: $scope.data.orgChart.i18n || {},\n\t\troots: $scope.data.orgChart.roots || [],\n\t\ttotalDepartments: $scope.data.orgChart.totalDepartments || 0\n\t};\n}\n",
+            "readonly": false,
+            "hint": "",
+            "name": "client_script",
+            "attributes": {
+                "client_script": "true"
+            },
+            "choice": 0,
+            "value": "function orgChartController($scope) {\n\tvar c = this;\n\n\tc.chart = {\n\t\ti18n: $scope.data.orgChart.i18n || {},\n\t\troots: $scope.data.orgChart.roots || [],\n\t\ttotalDepartments: $scope.data.orgChart.totalDepartments || 0\n\t};\n}\n",
+            "max_length": 8000,
+            "ed": {
+                "name": "client_script"
+            }
+        },
+        "data_table": {
+            "sys_mandatory": true,
+            "visible": true,
+            "dbType": 12,
+            "default_value": "sp_instance",
+            "label": "Data table",
+            "sys_readonly": false,
+            "type": "table_name",
+            "mandatory": true,
+            "displayValue": "sp_instance",
+            "readonly": false,
+            "hint": "",
+            "name": "data_table",
+            "attributes": {
+                "base_table": "sp_instance",
+                "base_start": "true"
+            },
+            "choice": 0,
+            "choices": [],
+            "value": "sp_instance",
+            "max_length": 80,
+            "ed": {
+                "name": "data_table"
+            }
+        },
+        "name": {
+            "sys_mandatory": true,
+            "visible": true,
+            "dbType": 12,
+            "label": "Name",
+            "sys_readonly": false,
+            "type": "translated_field",
+            "mandatory": true,
+            "displayValue": "Copy of Organization Chart (CD)",
+            "readonly": false,
+            "hint": "",
+            "name": "name",
+            "attributes": {},
+            "choice": 0,
+            "value": "Copy of Organization Chart (CD)",
+            "max_length": 40,
+            "ed": {
+                "name": "name"
+            }
+        },
+        "sys_scope": {
+            "sys_mandatory": false,
+            "visible": true,
+            "table_attributes": {
+                "metadata_link_exempt": "true"
+            },
+            "dbType": 12,
+            "label": "Application",
+            "sys_readonly": true,
+            "type": "reference",
+            "mandatory": false,
+            "refTable": "sys_store_app",
+            "reference_type": "table",
+            "displayValue": "Content Publishing",
+            "readonly": true,
+            "hint": "Application containing this record",
+            "name": "sys_scope",
+            "attributes": {
+                "list_force_default": "true",
+                "readonly_clickthrough": "true",
+                "ignore_filter_on_new": "true"
+            },
+            "reference_key": "sys_id",
+            "readonlyClickthrough": true,
+            "choice": 0,
+            "value": "b26210490b7203008cd6e7ae37673a6a",
+            "max_length": 32,
+            "ed": {
+                "reference": "sys_scope",
+                "searchField": "name",
+                "defaultOperator": "STARTSWITH",
+                "name": "sys_scope"
+            }
+        },
+        "id": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": 12,
+            "label": "ID",
+            "sys_readonly": false,
+            "type": "string",
+            "mandatory": false,
+            "displayValue": "copy_of_organization_chart__cd_",
+            "readonly": false,
+            "hint": "Identifier for $sp.embedWidget()",
+            "name": "id",
+            "attributes": {
+                "edge_encryption_enabled": "true"
+            },
+            "choice": 0,
+            "value": "copy_of_organization_chart__cd_",
+            "max_length": 40,
+            "ed": {
+                "name": "id"
+            }
+        },
+        "field_list": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dependentField": "data_table",
+            "dbType": -1,
+            "label": "Fields",
+            "sys_readonly": false,
+            "type": "field_list",
+            "mandatory": false,
+            "displayValue": "",
+            "readonly": false,
+            "hint": "",
+            "name": "field_list",
+            "attributes": {
+                "is_multi_text": "false"
+            },
+            "choice": 0,
+            "value": "",
+            "max_length": 1000,
+            "ed": {
+                "dependent_value": "sp_instance",
+                "name": "field_list"
+            }
+        },
+        "controller_as": {
+            "sys_mandatory": false,
+            "visible": true,
+            "dbType": 12,
+            "label": "controllerAs",
+            "sys_readonly": false,
+            "type": "string",
+            "mandatory": false,
+            "displayValue": "c",
+            "readonly": false,
+            "hint": "Identifier name for a reference to the controller in the directive's scope",
+            "name": "controller_as",
+            "attributes": {
+                "edge_encryption_enabled": "true"
+            },
+            "choice": 0,
+            "value": "c",
+            "max_length": 100,
+            "ed": {
+                "name": "controller_as"
+            }
+        }
+    }
+}
