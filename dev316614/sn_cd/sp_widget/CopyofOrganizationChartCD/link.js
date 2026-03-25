@@ -60,15 +60,22 @@ function orgChartLink(scope, element, attr, ctrl) {
 	}
 
 	function makeCard(department) {
-		var card = makeDom("div", "card department-card");
+		var card = makeDom("a", "card department-card");
 		var cardContainer = makeDom("div", "card-container");
 
+		card.setAttribute("href", buildDepartmentSearchUrl(department));
+		card.setAttribute("aria-label", "Open colleague search for " + department.name.display_value);
 		card.appendChild(cardContainer);
 		appendSimpleLine(cardContainer, "name", department.name.display_value);
 		appendSimpleLine(cardContainer, "department-level", department.levelText);
 		appendSimpleLine(cardContainer, "department-description", department.description.display_value || department.description.value);
 
 		return card;
+	}
+
+	function buildDepartmentSearchUrl(department) {
+		var query = encodeURIComponent(department.name.display_value || "");
+		return "/orkla?id=user_profile_clone&search=" + query;
 	}
 
 	function appendSimpleLine(container, className, value) {

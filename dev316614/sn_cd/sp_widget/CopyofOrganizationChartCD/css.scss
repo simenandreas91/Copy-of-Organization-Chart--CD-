@@ -708,10 +708,13 @@ a {
   }
 
   .department-card {
+    color: inherit;
+    display: block;
     width: 320px;
     height: 220px;
     max-width: 100%;
     padding: 24px 18px;
+    text-decoration: none !important;
   }
 
   .department-card .card-container {
