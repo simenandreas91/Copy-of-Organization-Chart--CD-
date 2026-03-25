@@ -62,54 +62,23 @@ function orgChartLink(scope, element, attr, ctrl) {
 	function makeCard(department) {
 		var card = makeDom("div", "card department-card");
 		var cardContainer = makeDom("div", "card-container");
-		var avatar = makeAvatar(department);
 
 		card.appendChild(cardContainer);
-		cardContainer.appendChild(avatar);
 		appendSimpleLine(cardContainer, "name", department.name.display_value);
-		appendSimpleLine(cardContainer, "department-parent", department.parentText);
-		appendMetaLine(cardContainer, chart.i18n.parent, department.parent.display_value || chart.i18n.topLevelDepartment);
-		appendMetaLine(cardContainer, chart.i18n.directChildren, department.childCount.toString());
+		appendSimpleLine(cardContainer, "department-level", department.levelText);
+		appendSimpleLine(cardContainer, "department-description", department.description.display_value || department.description.value);
 
 		return card;
 	}
 
-	function makeAvatar(department) {
-		var avatar = makeDom("div", "avatar");
-		var badge = makeDom("span", "report-badge");
-		var initial = makeDom("span", "view-profile");
-
-		initial.textContent = department.initial;
-		initial.setAttribute("aria-hidden", "true");
-		avatar.appendChild(initial);
-
-		if (department.childCount) {
-			badge.textContent = department.childCount;
-			badge.setAttribute("aria-hidden", "true");
-			avatar.appendChild(badge);
-		}
-
-		return avatar;
-	}
-
 	function appendSimpleLine(container, className, value) {
+		if (!value)
+			return;
+
 		var p = makeDom("p", className);
 		var span = makeDom("span");
 
 		span.textContent = value;
-		p.appendChild(span);
-		container.appendChild(p);
-	}
-
-	function appendMetaLine(container, labelText, valueText) {
-		var p = makeDom("p", "department-meta");
-		var label = makeDom("label");
-		var span = makeDom("span");
-
-		label.textContent = labelText;
-		span.textContent = valueText;
-
-		p.appendChild(label);
 		p.appendChild(span);
 		container.appendChild(p);
 	}
